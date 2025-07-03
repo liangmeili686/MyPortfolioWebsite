@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href ="assets/bottom.png">
+    <script src="script.js"></script>
+    <title>Meili's Portfolio</title>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <a href="#" class ="title">Meili</a>
+        </div>
+        <nav>
+            <a href="#intro" class ="active">Home</a>
+            <a href="#project1">Project 1</a>
+            <a href="#project2">Project 2</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hidden" id="intro">
+        <div class="content intro-content">
+            <h1 class="intro-line1">Hi, I'm Meili!</h1>
+            <h2 class="intro-line2">I am a Web Developer.</h2>
+        </div>
+    </section>
+
+    <section class="hidden" id="project1">
+        <div class="content project">
+            <h1 class="project-intro">Project 1 - Chrome Extension: Theme Song Finder</h1>
+            <div class="project-row hidden" style="display: none;">
+                <div class="project-video left">
+                    <video width="100%" autoplay muted loop playsinline poster="assets/ProjectOne.png">
+                        <source src="assets/SongFinderDemonstration.mp4" type="video/mp4">
+                        <source src="assets/SongFinderDemonstration.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="project-text right">
+                    <p>Have you ever been moved by a song from a movie you love?
+                        Great! This Chrome extension helps you find the theme song 
+                        (or the most iconic song) from the movie you're watching and 
+                        automatically add it to your Spotify playlist — saving you 
+                        the trouble of searching for it manually.
+                        <br><br>
+                        All you have to do is authorize the extension to access your 
+                        Spotify account (via API), and then just enjoy the movie!
+                        <br><br>
+                        When the movie is nearing the end — specifically, when only 
+                        five minutes remain — a window will pop up asking if you'd 
+                        like to add the theme song to your playlist. The song title 
+                        will be shown so you can confirm it's the one you like. The 
+                        extension also keeps track of movies you've already added songs 
+                        from, so it won't ask you again.
+                        <br><br>
+                        Current limitation:
+                        The extension currently only works with YouTube TV, as it needs 
+                        to detect the movie title on the page in order to search for 
+                        the correct song. Since different video platforms use different 
+                        HTML structures, the extension has only been configured to work 
+                        with YouTube TV for now.
+                    </p>
+                </div>
+            </div>
+            <img id="check-code-btn" src="assets/checkTheCode.png" alt="Check the code on GitHub" style="display:none;" />
+        </div>
+    </section>
+
+    <section class="hidden" id="project2">
+        <div class="content project2">
+            <h1 class="project-intro2">Project 2 - Side Scrolling Game</h1>
+            <div class="project-row2 hidden" style="display: none;">
+                <div class="project-text2">
+                    <p>"By the time her fingers withdrew, a stinking mass the size of a 
+                        horse-drawn carriage had spilled out—what they called the ensemble 
+                        of the social relations—and now she had cast it all away. Though 
+                        her right hand still clutched the bottle, it might as well have 
+                        been floating in the air."
+                        <br><br>
+                        This scrolling side game challenges players to survive as long as 
+                        they can against the flying and bouncing enemies, with a shooting 
+                        mode controlled by mouse. It is based from a story I wrote. Each 
+                        enemy represents a specific symbol-hearts for love, and eyes for 
+                        appearance. Feel free to check out the story behind!
+                        <br><br>
+                        I used object-oriented programming extensively to organize the enemy 
+                        classes. This helped create randomly generated looping events that 
+                        allow the game to scroll infinitely. As I enjoyed building the game, 
+                        my frontend skills improved significantly through the use of complex 
+                        conditional logic and events handling.
+                        <br><br>
+                        Current limitation:
+                        The game may lack innovative gameplay and is not yet attractive enough
+                        to hold a player's attention for long. It definitely needs more development
+                        time to be mature. I'm currently considering integrating this demo into 
+                        a larger RPG that tells the full story-not just a summary!
+                    </p>
+                </div>
+                <div class="project-video2">
+                    <video width="100%" autoplay muted loop playsinline poster="assets/ProjectTwo.png">
+                        <source src="assets/gameDemonstration.mp4" type="video/mp4">
+                        <source src="assets/gameDemonstration.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <img id="play-btn" src="assets/play.png" alt="Play the game" style="display:none;" />
+        </div>
+    </section>
+    <section class="hidden" id="about">
+        <div class="content about">
+            <div class="about-intro-group project-intro">
+                <h1>About Me</h1>
+                <p class="about-subtitle">- Learn about my colorful life -</p>
+            </div>
+            <div class="about-row hidden">
+                <div class="about-scattered">
+                    <!-- Singer - Top Left -->
+                    <div class="image-description scattered-card singer-card">
+                        <img src="assets/singingMe.png" alt="Singing">
+                        <p>I am a singer...</p>
+                    </div>
+
+                    <!-- Artist - Top Center -->
+                    <div class="image-description scattered-card artist-card">
+                        <img src="assets/painting.png" alt="Painting">
+                        <p>I am an artist...</p>
+                    </div>
+
+                    <!-- Writer - Bottom Left -->
+                    <div class="image-description scattered-card writer-card">
+                        <img src="assets/holdingPen.png" alt="Writing">
+                        <p>I am a writer...</p>
+                    </div>
+
+                    <!-- UI Designer - Center -->
+                    <div class="image-description scattered-card ui-card">
+                        <img src="assets/UI.png" alt="UI Design">
+                        <p>I am a game UI designer...</p>
+                    </div>
+
+                    <!-- Programmer - Always on the Right -->
+                    <div class="image-description scattered-card programmer-card">
+                        <img src="assets/computer.png" alt="Programming">
+                        <p>And of course... A programmer!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hidden" id="contact">
+        <div class="content contact">
+            <h1 class="contact-intro">Contact</h1>
+            <div class="contact-row hidden" style="display: none;">
+                <h1 class="contact-line1">You can contact me by:</h1>
+                <h2 class="contact-line2">Email: liangmeili686@gmail.com</h2>
+                <h2 class="contact-line3">Phone: 9298007980</h2>
+            </div>
+        </div>
+    </section>
+    <img id="bottom-nav" src="assets/bottom.png" alt="Next section" />
+    <div id="image-popup-overlay" style="display:none;">
+        <img id="image-popup-img" src="" alt="Large view" />
+    </div>
+    <audio id="about-singing-audio" src="assets/singing.MP3"></audio>
+</body>
+</html>

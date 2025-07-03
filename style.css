@@ -1,0 +1,389 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: "Papyrus", fantasy;
+}
+body {
+    background-image: url('assets/background1.png'); /* path to your image */
+    background-repeat: no-repeat;
+    background-size: auto 100% ;        /* scales image to cover the full screen */
+    cursor: url('assets/cursor.png'), auto;
+}
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+    filter: blur(5px);
+}
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0);
+}
+.content {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    width: 100%;
+    height: 100vh;
+    padding: 50px;
+    color: rgb(187, 0, 0);
+}
+.intro-content {
+    background-position-y: 0%;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+.intro-line1, .intro-line2,
+.contact-line1, .contact-line2, .contact-line3 {
+    opacity: 0;
+    position: relative;
+    transition: opacity 0.8s, transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.intro-animate .intro-line1 {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+.intro-animate .intro-line2 {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+.intro-line1 {
+    transform: translate(-60vw, -40vh);
+}
+.intro-line2 {
+    transform: translate(60vw, 40vh);
+    margin-top: 1.5rem;
+}
+.contact-row {
+    background-position-y: 100%;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact-row {
+    transform: translateY(0);
+}
+.contact-line1 {
+    transform: translateY(-100px);
+    font-size: 2rem;
+}
+.contact-line2 {
+    transform: translate(-60vw, -40vh);
+    margin-top: 1.5rem;
+    font-size: 2rem;
+}
+.contact-line3 {
+    transform: translate(60vw, -40vh);
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+.contact-row.show .contact-line1,
+.contact-row.show .contact-line2,
+.contact-row.show .contact-line3 {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:  1.5rem;
+    height: 70px;
+    background: rgb(0, 0, 0); /* optional: slight background for contrast */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+#logo {
+margin-top: 2.3rem;
+font-size: 2.5rem;
+display: inline-block;
+width: 83px;           /* width of one frame */
+height: 85px;          /* height of the sprite */
+background: url('assets/logoMove.png') left top no-repeat;
+background-size: 502px 85px; /* total size of the sprite image */
+margin-right: 1rem;
+vertical-align: middle;
+filter: drop-shadow(1px 5px 2px #000000);
+}
+.title{
+    position: relative;
+    font-weight: bold;
+    left: 85px;
+    color: rgb(193, 130, 160);
+}
+nav {
+    display: flex;
+    gap: 2rem;
+}
+nav a {
+    margin-top: 0.5rem;
+    color: rgb(112, 0, 0);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+nav a.active, nav a:hover {
+    color: #a77aa5;
+    font-weight: bold;
+}
+
+.project, .project2, .contact, .about {
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.project-intro, .project-intro2, .contact-intro, .about-intro-group {
+    font-weight: bold;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), font-size 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    text-align: center;
+}
+.project-intro:hover,
+.project-intro2:hover,
+.contact-intro:hover,
+.about-intro-group:hover {
+    transform: scale(1.2);
+    font-size: 2.5rem;
+}
+.project-intro.fade-out,
+.project-intro2.fade-out,
+.contact-intro.fade-out,
+.about-intro-group.fade-out {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.project-video, .project-text,
+.project-video2, .project-text2,
+.about-scattered {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.8s, transform 2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.project-row.show .project-video, .project-row.show .project-text, 
+.project-row2.show .project-video2, .project-row2.show .project-text2,
+.about-row.show .about-scattered , .check-code-btn.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+.project-row, .project-row2, .contact-row, .about-row{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.project-video {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(195, 35, 62);
+    border: 2px solid black; 
+    padding: 20px;
+}
+.project-video2 {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(74, 19, 69);
+    border: 2px solid black; 
+    padding: 20px;
+}
+.project-text, .project-text2 {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px  1px 0 black,
+    1px  1px 0 black;
+}
+
+#bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: auto;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+#bottom-nav:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.image-description {
+    border-radius: 1px;
+    padding: 0.5rem;
+    max-width: 300px;
+    width: 100%;
+    font-size: 1rem;
+    text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0),
+    1px -1px 0 black,
+    -1px  1px 0 rgba(0, 0, 0, 0),
+    1px  1px 0 black;
+}
+.image-description img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+.image-description p {
+    font-size: 1.25rem;
+    color: rgb(187, 0, 0);
+    margin: 0;
+}
+.about-row {
+position: relative;
+width: 100vw;
+height: 100vh;
+  /* No display: flex or centering */
+}
+.about-scattered {
+position: absolute;
+top: 0; left: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+pointer-events: none;
+transform: translateY(100px);
+transition: opacity 0.8s, transform 2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.about-row.show .about-scattered {
+opacity: 1;
+pointer-events: auto;
+transform: translateY(0);
+}
+.scattered-card {
+    position: absolute;
+    border-radius: 2px;
+    padding: 1rem;
+    text-align: center;
+}
+.scattered-card:hover {
+transform: scale(1.1);
+transition: transform 2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Singer - Top Left */
+.artist-card {
+top: 15%;
+left: 3%;
+}
+
+/* Artist - Top Center */
+.singer-card {
+top: 25%;
+left: 25%;
+}
+
+/* Writer - Bottom Left */
+.writer-card {
+bottom: 25%;
+left: 7%;
+}
+
+/* UI Designer - Bottom center */
+.ui-card {
+top: 67%;
+left: 28%;
+}
+
+/* Programmer - Always on the Right */
+.programmer-card {
+top: 45%;
+right: 3%;
+}
+
+.about-row.show {
+display: flex !important;
+opacity: 1;
+}
+
+#check-code-btn {
+position: fixed;
+top: -100px;
+left: 0;
+width: 40vw;
+max-width: 40vw;
+height: auto;
+z-index: 3000;
+cursor: pointer;
+display: none;
+transition: top 1.2s, transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+#check-code-btn.show {
+top: 70px;
+}
+#check-code-btn:hover {
+transform: scale(1.1) rotate(-6deg);
+}
+
+#play-btn {
+position: fixed;
+bottom: -100px;
+right: 10%;
+width: 30vw;
+max-width: 30vw;
+height: auto;
+z-index: 3000;
+cursor: pointer;
+display: none;
+opacity: 0;
+transition: opacity 1.2s, transform 1.2s, bottom 2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+#play-btn.show {
+display: block;
+opacity: 1;
+bottom: 0px;
+}
+#play-btn:hover {
+transform: scale(1.08);
+}
+
+#image-popup-overlay {
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+width: 100vw; height: 100vh;
+background: rgba(0,0,0,0.7);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 5000;
+}
+#image-popup-img {
+max-width: 90vw;
+max-height: 80vh;
+border-radius: 12px;
+box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+cursor: pointer;
+transition: transform 0.2s;
+}
+#image-popup-img:hover {
+transform: scale(1.03);
+}
