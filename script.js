@@ -1,6 +1,217 @@
 // JavaScript changes for project-intro fade and animation
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Responsive resize method
+    function handleResponsiveResize() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const screenRatio = screenWidth / screenHeight;
+        const isLongScreen = screenHeight > screenWidth; // Portrait orientation
+        
+        // Base font sizes for different screen sizes
+        const baseFontSizes = {
+            mobile: { small: 14, medium: 18, large: 24, xlarge: 32 },
+            tablet: { small: 16, medium: 20, large: 28, xlarge: 36 },
+            desktop: { small: 18, medium: 24, large: 32, xlarge: 42 }
+        };
+        
+        // Determine device type
+        let deviceType = 'desktop';
+        if (screenWidth < 768) deviceType = 'mobile';
+        else if (screenWidth < 1024) deviceType = 'tablet';
+        
+        const fontSize = baseFontSizes[deviceType];
+        
+        // Adjust text sizes
+        const textElements = {
+            '.intro-line1, .intro-line2': fontSize.xlarge,
+            '.project-intro, .project-intro2, .contact-intro, .about-intro-group h1': fontSize.large,
+            '.contact-line1, .contact-line2, .contact-line3': fontSize.large,
+            '.project-text p, .project-text2 p, .about-subtitle': fontSize.medium,
+            'nav a': fontSize.medium,
+            '.title': fontSize.large,
+            '.image-description p': fontSize.small
+        };
+        
+        // Apply text size adjustments
+        Object.entries(textElements).forEach(([selector, size]) => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                el.style.fontSize = `${size}px`;
+            });
+        });
+        
+        // Adjust image and video sizes
+        const mediaElements = {
+            'video': { width: '100%', height: 'auto' },
+            '.image-description img': { width: '100%', height: 'auto', maxWidth: isLongScreen ? '300px' : '400px' },
+            '#check-code-btn, #play-btn': { 
+                width: isLongScreen ? '200px' : '250px', 
+                height: 'auto' 
+            },
+            '#bottom-nav': { 
+                width: isLongScreen ? '60px' : '80px', 
+                height: 'auto' 
+            }
+        };
+        
+        // Apply media size adjustments
+        Object.entries(mediaElements).forEach(([selector, styles]) => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                Object.entries(styles).forEach(([property, value]) => {
+                    el.style[property] = value;
+                });
+            });
+        });
+        
+        // Handle layout changes for long screens (portrait orientation)
+        const projectRows = document.querySelectorAll('.project-row, .project-row2');
+        projectRows.forEach(row => {
+            if (isLongScreen) {
+                // Single column layout for long screens
+                row.style.flexDirection = 'column';
+                row.style.gap = '2rem';
+                
+                // Adjust video and text containers
+                const videos = row.querySelectorAll('.project-video, .project-video2');
+                const texts = row.querySelectorAll('.project-text, .project-text2');
+                
+                videos.forEach(video => {
+                    video.style.flex = '1 1 100%';
+                    video.style.maxWidth = '100%';
+                    video.style.order = '1'; // Video first
+                });
+                
+                texts.forEach(text => {
+                    text.style.flex = '1 1 100%';
+                    text.style.maxWidth = '100%';
+                    text.style.order = '2'; // Text second
+                });
+            } else {
+                // Two column layout for wide screens
+                row.style.flexDirection = 'row';
+                row.style.gap = '2rem';
+                
+                const videos = row.querySelectorAll('.project-video, .project-video2');
+                const texts = row.querySelectorAll('.project-text, .project-text2');
+                
+                videos.forEach(video => {
+                    video.style.flex = '1 1 50%';
+                    video.style.maxWidth = '50%';
+                    video.style.order = 'unset';
+                });
+                
+                texts.forEach(text => {
+                    text.style.flex = '1 1 50%';
+                    text.style.maxWidth = '50%';
+                    text.style.order = 'unset';
+                });
+            }
+        });
+        
+        // Adjust about section scattered cards for long screens
+        const aboutScattered = document.querySelector('.about-scattered');
+        if (aboutScattered) {
+            if (isLongScreen) {
+                aboutScattered.style.gridTemplateColumns = '1fr';
+                aboutScattered.style.gridTemplateRows = 'repeat(5, auto)';
+                aboutScattered.style.gap = '1rem';
+                
+                // Adjust card sizes for mobile
+                const cards = aboutScattered.querySelectorAll('.scattered-card');
+                cards.forEach(card => {
+                    card.style.maxWidth = '100%';
+                    card.style.width = '100%';
+                });
+            } else {
+                // Restore original grid layout for wide screens
+                aboutScattered.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                aboutScattered.style.gridTemplateRows = 'repeat(2, 1fr)';
+                aboutScattered.style.gap = '2rem';
+                
+                const cards = aboutScattered.querySelectorAll('.scattered-card');
+                cards.forEach(card => {
+                    card.style.maxWidth = '300px';
+                    card.style.width = 'auto';
+                });
+            }
+        }
+        
+        // Adjust header for long screens
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        if (header && nav) {
+            if (isLongScreen) {
+                header.style.flexDirection = 'column';
+                header.style.height = 'auto';
+                header.style.padding = '1rem';
+                header.style.gap = '1rem';
+                
+                nav.style.flexWrap = 'wrap';
+                nav.style.justifyContent = 'center';
+                nav.style.gap = '1rem';
+                
+                // Adjust logo for mobile
+                const logo = document.getElementById('logo');
+                if (logo) {
+                    logo.style.marginTop = '0';
+                    logo.style.fontSize = '2rem';
+                }
+            } else {
+                header.style.flexDirection = 'row';
+                header.style.height = '70px';
+                header.style.padding = '1.5rem';
+                header.style.gap = '0';
+                
+                nav.style.flexWrap = 'nowrap';
+                nav.style.justifyContent = 'flex-end';
+                nav.style.gap = '2rem';
+                
+                const logo = document.getElementById('logo');
+                if (logo) {
+                    logo.style.marginTop = '2.3rem';
+                    logo.style.fontSize = '2.5rem';
+                }
+            }
+        }
+        
+        // Adjust content padding for different screen sizes
+        const contentElements = document.querySelectorAll('.content');
+        contentElements.forEach(content => {
+            if (isLongScreen) {
+                content.style.padding = '20px';
+                content.style.minHeight = '100vh';
+            } else {
+                content.style.padding = '50px';
+                content.style.minHeight = '100vh';
+            }
+        });
+        
+        // Adjust popup image size
+        const popupImg = document.getElementById('image-popup-img');
+        if (popupImg) {
+            if (isLongScreen) {
+                popupImg.style.maxWidth = '90vw';
+                popupImg.style.maxHeight = '80vh';
+            } else {
+                popupImg.style.maxWidth = '80vw';
+                popupImg.style.maxHeight = '90vh';
+            }
+        }
+    }
+    
+    // Initial resize call
+    handleResponsiveResize();
+    
+    // Add resize event listener
+    window.addEventListener('resize', handleResponsiveResize);
+    
+    // Add orientation change listener for mobile devices
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleResponsiveResize, 100); // Small delay to ensure orientation change is complete
+    });
+
     // Logo sprite animation
     const logo = document.getElementById('logo');
     if (logo) {

@@ -12,7 +12,6 @@ body {
     background-repeat: no-repeat;
     background-size: auto 100% ;        /* scales image to cover the full screen */
     cursor: url('assets/cursor.png'), auto;
-    font-size: 2vw;
 }
 .hidden {
     opacity: 0;
@@ -387,39 +386,4 @@ transition: transform 0.2s;
 }
 #image-popup-img:hover {
 transform: scale(1.03);
-}
-
-/* Responsive base font size and image scaling */
-h1, h2, h3, p {
-  font-size: clamp(1rem, 2vw, 2.5rem);
-}
-
-/* Media queries for extra control on small and large screens */
-@media (max-width: 600px) {
-  body {
-    font-size: 4vw;
-  }
-  h1, h2, h3, p {
-    font-size: clamp(1rem, 4vw, 2rem);
-  }
-  .project-row, .project-row2 {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-  .project-video, .project-video2, .project-text, .project-text2 {
-    padding: 10px;
-    min-width: 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-@media (min-width: 1200px) {
-  body {
-    font-size: 1.5vw;
-  }
-  h1, h2, h3, p {
-    font-size: clamp(1.5rem, 1.5vw, 3rem);
-  }
 }
