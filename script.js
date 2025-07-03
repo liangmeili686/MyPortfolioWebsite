@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Base font sizes for different screen sizes
         const baseFontSizes = {
-            mobile: { small: 14, medium: 18, large: 24, xlarge: 32 },
-            tablet: { small: 16, medium: 20, large: 28, xlarge: 36 },
-            desktop: { small: 18, medium: 24, large: 32, xlarge: 42 }
+            mobile: { small: 8, medium: 14, large: 20, xlarge: 27 },
+            tablet: { small: 13, medium: 15, large: 24, xlarge: 32 },
+            desktop: { small: 14, medium: 20, large: 28, xlarge: 38 }
         };
         
         // Determine device type
