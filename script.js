@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Base font sizes for different screen sizes
         const baseFontSizes = {
-            mobile: { small: 8, medium: 14, large: 20, xlarge: 27 },
-            tablet: { small: 13, medium: 15, large: 24, xlarge: 32 },
+            mobile: { small: 4, medium: 6, large: 11, xlarge: 15 },
+            tablet: { small: 10, medium: 12, large: 17, xlarge: 25 },
             desktop: { small: 14, medium: 20, large: 28, xlarge: 38 }
         };
         
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             '.project-intro, .project-intro2, .contact-intro, .about-intro-group h1': fontSize.large,
             '.contact-line1, .contact-line2, .contact-line3': fontSize.large,
             '.project-text p, .project-text2 p, .about-subtitle': fontSize.medium,
-            'nav a': fontSize.medium,
-            '.title': fontSize.large,
+            'nav a': fontSize.large,
+            '.title': fontSize.xlarge,
             '.image-description p': fontSize.small
         };
         
@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const mediaElements = {
             'video': { width: '100%', height: 'auto' },
             '.image-description img': { width: '100%', height: 'auto', maxWidth: isLongScreen ? '300px' : '400px' },
-            '#check-code-btn, #play-btn': { 
+            /*'#check-code-btn, #play-btn': { 
                 width: isLongScreen ? '200px' : '250px', 
                 height: 'auto' 
-            },
+            },*/
             '#bottom-nav': { 
                 width: isLongScreen ? '60px' : '80px', 
                 height: 'auto' 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isLongScreen) {
                 // Single column layout for long screens
                 row.style.flexDirection = 'column';
-                row.style.gap = '2rem';
+                row.style.gap = '1rem';
                 
                 // Adjust video and text containers
                 const videos = row.querySelectorAll('.project-video, .project-video2');
@@ -110,33 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Adjust about section scattered cards for long screens
-        const aboutScattered = document.querySelector('.about-scattered');
-        if (aboutScattered) {
-            if (isLongScreen) {
-                aboutScattered.style.gridTemplateColumns = '1fr';
-                aboutScattered.style.gridTemplateRows = 'repeat(5, auto)';
-                aboutScattered.style.gap = '1rem';
-                
-                // Adjust card sizes for mobile
-                const cards = aboutScattered.querySelectorAll('.scattered-card');
-                cards.forEach(card => {
-                    card.style.maxWidth = '100%';
-                    card.style.width = '100%';
-                });
-            } else {
-                // Restore original grid layout for wide screens
-                aboutScattered.style.gridTemplateColumns = 'repeat(3, 1fr)';
-                aboutScattered.style.gridTemplateRows = 'repeat(2, 1fr)';
-                aboutScattered.style.gap = '2rem';
-                
-                const cards = aboutScattered.querySelectorAll('.scattered-card');
-                cards.forEach(card => {
-                    card.style.maxWidth = '300px';
-                    card.style.width = 'auto';
-                });
-            }
+        // Handle about section separately (it uses absolute positioning, not flexbox)
+        const aboutCards = document.querySelectorAll('.image-description');
+        if (isLongScreen) {
+            aboutCards.forEach(card => {
+                const img = card.querySelector('img');
+                if (img) {
+                    img.style.width = Math.min(window.innerWidth * 0.15, 80) + 'px';
+                }
+                card.style.maxWidth = '80px';
+                card.style.width = '80px';
+            });
+        } else {
+            aboutCards.forEach(card => {
+                const img = card.querySelector('img');
+                if (img) {
+                    img.style.width = '100%';
+                }
+                card.style.maxWidth = '300px';
+                card.style.width = 'auto';
+            });
         }
+        
+        // Note: About section uses absolute positioning, so we don't change its layout structure
+        // The cards are positioned using CSS top/left properties and will maintain their scattered layout
         
         // Adjust header for long screens
         const header = document.querySelector('header');
@@ -191,13 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Adjust popup image size
         const popupImg = document.getElementById('image-popup-img');
         if (popupImg) {
-            if (isLongScreen) {
-                popupImg.style.maxWidth = '90vw';
-                popupImg.style.maxHeight = '80vh';
-            } else {
-                popupImg.style.maxWidth = '80vw';
-                popupImg.style.maxHeight = '90vh';
-            }
+            popupImg.style.maxWidth = '90vw';
+            popupImg.style.maxHeight = 'auto';
         }
     }
     
