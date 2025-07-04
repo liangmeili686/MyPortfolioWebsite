@@ -70,7 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         projectRows.forEach(row => {
             if (isLongScreen) {
                 row.style.lineHeight = '1.2';
-                row.style.textShadow = 'none';
+                const paragraphs = row.querySelectorAll('.project-text p, .project-text2 p');
+                paragraphs.forEach(p => {
+                    p.style['text-shadow'] = "none"
+                });
+
 
                 // Single column layout for long screens
                 row.style.flexDirection = 'column';
