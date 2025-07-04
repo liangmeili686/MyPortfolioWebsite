@@ -6,6 +6,7 @@
     border: none;
     outline: none;
     font-family: "Papyrus", fantasy;
+    line-height: 1.4;
 }
 body {
     background-image: url('assets/background1.png'); /* path to your image */
