@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
         projectRows.forEach(row => {
             if (isLongScreen) {
                 row.style.lineHeight = '1.2';
+                element.style.textShadow = 'none';
+
                 // Single column layout for long screens
                 row.style.flexDirection = 'column';
                 row.style.gap = '1rem';
