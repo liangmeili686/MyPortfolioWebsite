@@ -193,6 +193,7 @@ nav a.active, nav a:hover {
     align-items: center;
     justify-content: center;
     gap: 2rem;
+    font-weight: bold;
 }
 .project-video {
     flex: 1 1 50%;
